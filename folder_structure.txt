@@ -1,0 +1,120 @@
+.
+├── BrewSec/
+├── │
+├── ├── README.md
+├── ├── LICENSE
+├── ├── .gitignore
+├── ├── .env.example
+├── ├── Dockerfile
+├── ├── compose.yaml
+├── │
+├── ├── brewsec.py                    # Main CLI / argparse launcher
+├── │
+├── ├── cli/
+├── │   ├── __init__.py
+├── │   ├── parser.py                 # argparse arguments
+├── │   ├── menu.py                   # Interactive menu
+├── │   ├── launcher.py               # Start/stop selected lab
+├── │   └── display.py                # Terminal output
+├── │
+├── ├── core/
+├── │   ├── __init__.py
+├── │   ├── lab_registry.py           # Find available labs
+├── │   ├── lab_loader.py             # Load selected lab
+├── │   ├── port_manager.py           # Assign/check ports
+├── │   └── process_manager.py        # Start/stop lab processes
+├── │
+├── ├── labs/
+├── │   │
+├── │   ├── sqli/
+├── │   │   ├── level01/
+├── │   │   │   ├── app.py
+├── │   │   │   ├── routes.py
+├── │   │   │   ├── models.py
+├── │   │   │   ├── config.py
+├── │   │   │   ├── .env.example
+├── │   │   │   ├── seed.py
+├── │   │   │   ├── templates/
+├── │   │   │   │   ├── base.html
+├── │   │   │   │   └── search.html
+├── │   │   │   ├── static/
+├── │   │   │   ├── manifest.yaml
+├── │   │   │   └── README.md
+├── │   │   │
+├── │   │   ├── level02/
+├── │   │   ├── level03/
+├── │   │   ├── level04/
+├── │   │   └── level05/
+├── │   │
+├── │   ├── xss/
+├── │   │   ├── level01/
+├── │   │   ├── level02/
+├── │   │   ├── level03/
+├── │   │   ├── level04/
+├── │   │   └── level05/
+├── │   │
+├── │   ├── csrf/
+├── │   │   ├── level01/
+├── │   │   ├── level02/
+├── │   │   ├── level03/
+├── │   │   ├── level04/
+├── │   │   └── level05/
+├── │   │
+├── │   ├── idor/
+├── │   │   ├── level01/
+├── │   │   ├── level02/
+├── │   │   ├── level03/
+├── │   │   ├── level04/
+├── │   │   └── level05/
+├── │   │
+├── │   ├── authentication/
+├── │   │   ├── level01/
+├── │   │   ├── level02/
+├── │   │   ├── level03/
+├── │   │   ├── level04/
+├── │   │   └── level05/
+├── │   │
+├── │   ├── access_control/
+├── │   ├── ssrf/
+├── │   ├── ssti/
+├── │   ├── path_traversal/
+├── │   ├── file_upload/
+├── │   ├── command_injection/
+├── │   ├── race_condition/
+├── │   └── business_logic/
+├── │
+├── ├── shared/
+├── │   ├── database.py
+├── │   ├── models.py
+├── │   ├── auth.py
+├── │   ├── sessions.py
+├── │   └── templates/
+├── │       └── base.html
+├── │
+├── ├── docs/
+├── │   ├── architecture.md
+├── │   ├── installation.md
+├── │   ├── methodology.md
+├── │   │
+├── │   └── vulnerabilities/
+├── │       ├── sqli/
+├── │       │   ├── level01.md
+├── │       │   ├── level02.md
+├── │       │   ├── level03.md
+├── │       │   ├── level04.md
+├── │       │   └── level05.md
+├── │       │
+├── │       ├── xss/
+├── │       ├── csrf/
+├── │       ├── idor/
+├── │       └── ...
+├── │
+├── ├── scripts/
+├── │   ├── seed_database.py
+├── │   ├── reset_lab.py
+├── │   └── verify_labs.py
+├── │
+└── └── tests/
+    ├── ├── test_launcher.py
+    ├── ├── test_labs.py
+    └── └── test_security.py

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="font-mono min-h-screen px-6 py-10 bg-[#141414] text-[#fff2d7] flex items-center justify-center">
+    <div class="max-w-3xl mx-auto">
+
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-2xl font-bold text-[#fff2d7]">
+                ☕ BrewSec · SQL Injection · Level 01
+            </h1>
+            <p class="text-sm text-[#a09070] mt-1">
+                Search the coffee catalog. Figure out what's hidden.
+            </p>
+        </header>
+
+        <!-- Search bar -->
+        <form method="get" action="/" class="mb-8 flex gap-2">
+            <input
+                type="text"
+                name="q"
+                value="{{ q or '' }}"
+                placeholder="Search coffees… (try 'esp')"
+                autocomplete="off"
+                class="flex-1 bg-[#1e1e1e] border border-[#3a3a3a] rounded-md
+                    px-4 py-2 text-sm text-[#fff2d7] placeholder-[#a09070]
+                    focus:outline-none focus:border-[#fff2d7] focus:ring-1 focus:ring-[#fff2d7]/30
+                    transition-colors"
+            >
+            <button
+                type="submit"
+                class="bg-[#fff2d7] text-[#141414] font-bold rounded-md
+                    px-5 py-2 text-sm hover:bg-[#e8dcc0] transition-colors
+                    shadow-lg shadow-[#fff2d7]/10"
+            >
+                Search
+            </button>
+        </form>
+
+        <!-- Query echo (dev/debug) -->
+        <p class="text-xs text-[#a09070] mb-4">
+            query: <span class="text-[#fff2d7]">{{ q or '(none)' }}</span>
+            · rows: <span class="text-[#fff2d7]">{{ rows|length }}</span>
+        </p>
+        
+        <!-- Results -->
+        {% if rows %}
+            <ul class="space-y-3">
+                {% for coffee in rows %}
+                    <li class="bg-[#1e1e1e] border border-[#2e2e2e] rounded-lg
+                            p-4 hover:border-[#4a4a4a] transition-colors">
+                        <div class="flex items-baseline justify-between gap-4">
+                            <h2 class="text-lg font-semibold text-[#fff2d7]">
+                                {{ coffee["name"] or "(unnamed)" }}
+                            </h2>
+                            <span class="text-[#fff2d7] font-bold whitespace-nowrap">
+                                ${{ "%.2f"|format(coffee["price"] or 0) }}
+                            </span>
+                        </div>
+                        {% if coffee["description"] %}
+                            <p class="text-sm text-[#c0b090] mt-1">
+                                {{ coffee["description"] }}
+                            </p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="text-center py-16 border border-dashed border-[#3a3a3a] rounded-lg bg-[#1a1a1a]">
+                <p class="text-[#a09070] text-sm">No coffees found.</p>
+                {% if q %}
+                    <p class="text-[#7a6a50] text-xs mt-1">
+                        Try a different search term.
+                    </p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}
