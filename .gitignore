@@ -1,0 +1,26 @@
+.env
+.env.[a-zA-Z]*
+instance/
+.flaskenv
+
+# SQLite Databases
+*.sqlite3
+*.sqlite
+*.db
+*.db-journal
+*.db-wal
+
+# Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS-specific files
+.DS_Store
+Thumbs.db
