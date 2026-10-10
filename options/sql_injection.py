@@ -43,15 +43,16 @@ def start_level_01():
 
 def start_level_02():
     print(f"{Colors.CYAN}[+]{Colors.RESET} Starting SQL Injection Level 02...")
-
+    launch_lab("sql_injection", "level_02")
 
 def start_level_03():
     print(f"{Colors.CYAN}[+]{Colors.RESET} Starting SQL Injection Level 03...")
-
+    launch_lab("sql_injection", "level_03")
 
 def start_level_04():
     print(f"{Colors.CYAN}[+]{Colors.RESET} Starting SQL Injection Level 04...")
-
+    launch_lab("sql_injection", "level_04")
 
 def start_level_05():
     print(f"{Colors.CYAN}[+]{Colors.RESET} Starting SQL Injection Level 05...")
+    launch_lab("sql_injection", "level_05")

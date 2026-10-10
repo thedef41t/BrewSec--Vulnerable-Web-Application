@@ -10,7 +10,7 @@ class Coffee(db.Model):
     name: Mapped[str | None] = mapped_column(String(100))
     description: Mapped[str | None] = mapped_column(Text)
     price: Mapped[float | None] = mapped_column(Numeric(10, 2))
-    is_hidden: Mapped[bool] = mapped_column(default=False)                                # For SQL Injection attack
+    is_hidden: Mapped[bool] = mapped_column(default=False) # For SQL Injection attack
     
     created_at: Mapped[datetime] = mapped_column(
         default=lambda: datetime.now(timezone.utc)
