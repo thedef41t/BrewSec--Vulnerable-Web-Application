@@ -1,7 +1,84 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main>
-    Home (LEVEL 02)
+<main class="font-mono min-h-screen px-6 py-6 bg-[#141414] text-[#fff2d7] flex items-center justify-center">
+    <div class="max-w-md mx-auto w-full">
+
+        <!-- Header -->
+        <header class="mb-5">
+            <h1 class="text-xl font-bold text-[#fff2d7]">☕ BrewSec · Login</h1>
+            <p class="text-xs text-[#a09070] mt-0.5">
+                Sign in. No password reset, no registration.
+            </p>
+        </header>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flash-container" class="mb-3 space-y-1.5">
+                    {% for category, message in messages %}
+                        <div class="text-xs px-3 py-2 rounded-md border
+                            {% if category == 'success' %}
+                                bg-[#1e2e1e] border-[#3a5a3a] text-[#b8e6b8]
+                            {% else %}
+                                bg-[#2e1e1e] border-[#5a3a3a] text-[#e6b8b8]
+                            {% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Login form -->
+        <form method="post" action=""
+              class="bg-[#1e1e1e] border border-[#2e2e2e] rounded-lg p-4 space-y-3">
+
+            <div>
+                <label for="username" class="block text-[10px] text-[#a09070] mb-1 tracking-wide">USERNAME</label>
+                <input type="text" id="username" name="username" required
+                       autocomplete="username" placeholder="admin"
+                       class="w-full bg-[#141414] border border-[#3a3a3a] rounded-md
+                              px-3 py-1.5 text-sm text-[#fff2d7] placeholder-[#a09070]
+                              focus:outline-none focus:border-[#fff2d7] focus:ring-1 focus:ring-[#fff2d7]/30
+                              transition-colors">
+            </div>
+
+            <div>
+                <label for="password" class="block text-[10px] text-[#a09070] mb-1 tracking-wide">PASSWORD</label>
+                <input type="password" id="password" name="password" required
+                       autocomplete="current-password" placeholder="••••••••"
+                       class="w-full bg-[#141414] border border-[#3a3a3a] rounded-md
+                              px-3 py-1.5 text-sm text-[#fff2d7] placeholder-[#a09070]
+                              focus:outline-none focus:border-[#fff2d7] focus:ring-1 focus:ring-[#fff2d7]/30
+                              transition-colors">
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-[#fff2d7] text-[#141414] font-bold rounded-md
+                           px-4 py-1.5 text-sm hover:bg-[#e8dcc0] transition-colors
+                           shadow-lg shadow-[#fff2d7]/10">
+                Login
+            </button>
+        </form>
+
+        {% if session.get('username') %}
+        <p class="text-xs text-[#a09070] mt-3 text-center">
+            Logged in as <span class="text-[#fff2d7]">{{ session.username }}</span>
+        </p>
+        {% endif %}
+
+        <script>
+            setTimeout(function() {
+                const flashContainer = document.getElementById('flash-container');
+                if (flashContainer) {
+                    flashContainer.style.opacity = '0';
+                    setTimeout(function() {
+                        flashContainer.remove();
+                    }, 500);
+            }}, 3000);
+        </script>
+
+    </div>
 </main>
 {% endblock %}

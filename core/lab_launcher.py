@@ -15,20 +15,20 @@ def launch_lab(category, level):
     try:
         module_name = f"labs.{category}.{level}.app"
 
-        print(f"[+] Importing: {module_name}", flush=True)
+        print(f"{Colors.CYAN}[+]{Colors.RESET} Importing: {module_name}", flush=True)
         module = importlib.import_module(module_name)
 
-        print("[+] Creating Flask app...", flush=True)
+        print(f"{Colors.CYAN}[+]{Colors.RESET} Creating Flask app...", flush=True)
         app = module.create_app()
 
         port = LAB_PORTS.get((category, level))
 
         if port is None:
-            print(f"[!] No port configured for {category} {level}")
+            print(f"{Colors.RED}[!]{Colors.RESET} No port configured for {category} {level}")
             return
 
         print(
-            f"[+] Starting server at http://127.0.0.1:{port}",
+            f"{Colors.CYAN}[+]{Colors.RESET} Starting server at http://127.0.0.1:{port}",
             flush=True,
         )
 
@@ -39,7 +39,7 @@ def launch_lab(category, level):
             use_reloader=False,
         )
 
-        print("[!] Flask server stopped.", flush=True)
+        print(f"{Colors.YELLOW}[!]{Colors.CYAN} Flask server stopped.", flush=True)
 
     except Exception:
         traceback.print_exc()

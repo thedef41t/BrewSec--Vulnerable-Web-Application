@@ -13,3 +13,6 @@ class Config:
     LAB_NAME = "SQL Injection - Level 02"
     LAB_DIFFICULTY = "Apprentice"
     LAB_CATEGORY = "SQL Injection"
+
+    TEMPLATES_AUTO_RELOAD = True
+    EXPLAIN_TEMPLATE_LOADING = False 

@@ -24,6 +24,8 @@ class Coffee(db.Model):
         return f"<Coffee {self.name!r}>"
 
 class User(db.Model):
+    __tablename__ = "users"
+
     id: Mapped[int] = mapped_column(primary_key=True)
     username: Mapped[str | None] = mapped_column(String(100))
     email: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
