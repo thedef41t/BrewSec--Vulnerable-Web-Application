@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="font-mono min-h-screen px-6 py-6 bg-[#141414] text-[#fff2d7] flex items-center justify-center">
+    <div class="max-w-3xl mx-auto w-full">
+
+        <!-- Header -->
+        <header class="mb-5 flex items-center justify-between">
+            <div>
+                <h1 class="text-xl font-bold text-[#fff2d7]">☕ BrewSec · Menu</h1>
+                <p class="text-xs text-[#a09070] mt-0.5">
+                    Explore our selection of freshly brewed coffee.
+                </p>
+            </div>
+            {% if session.get('username') %}
+            <p class="text-xs text-[#a09070]">
+                User: <span class="text-[#fff2d7]">{{ session.username }}</span>
+            </p>
+            {% endif %}
+        </header>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flash-container" class="mb-3 space-y-1.5">
+                    {% for category, message in messages %}
+                        <div class="text-xs px-3 py-2 rounded-md border
+                            {% if category == 'success' %}
+                                bg-[#1e2e1e] border-[#3a5a3a] text-[#b8e6b8]
+                            {% else %}
+                                bg-[#2e1e1e] border-[#5a3a3a] text-[#e6b8b8]
+                            {% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-6">
+            <a href="?category=all"
+               class="px-3 py-1.5 text-xs font-bold rounded-md border transition-colors
+                      {% if selected_category == 'all' or not selected_category %}
+                          bg-[#fff2d7] text-[#141414] border-[#fff2d7]
+                      {% else %}
+                          bg-[#1e1e1e] text-[#a09070] border-[#2e2e2e] hover:border-[#3a3a3a] hover:text-[#fff2d7]
+                      {% endif %}">
+                All Items
+            </a>
+            <a href="?category=classic"
+               class="px-3 py-1.5 text-xs font-bold rounded-md border transition-colors
+                      {% if selected_category == 'classic' %}
+                          bg-[#fff2d7] text-[#141414] border-[#fff2d7]
+                      {% else %}
+                          bg-[#1e1e1e] text-[#a09070] border-[#2e2e2e] hover:border-[#3a3a3a] hover:text-[#fff2d7]
+                      {% endif %}">
+                Classics
+            </a>
+            <a href="?category=special"
+               class="px-3 py-1.5 text-xs font-bold rounded-md border transition-colors
+                      {% if selected_category == 'special' %}
+                          bg-[#fff2d7] text-[#141414] border-[#fff2d7]
+                      {% else %}
+                          bg-[#1e1e1e] text-[#a09070] border-[#2e2e2e] hover:border-[#3a3a3a] hover:text-[#fff2d7]
+                      {% endif %}">
+                Specialties
+            </a>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {% for coffee in coffees %}
+                {% if not coffee.is_hidden %}
+                <div class="bg-[#1e1e1e] border border-[#2e2e2e] rounded-lg p-4 flex flex-col justify-between hover:border-[#3a3a3a] transition-colors">
+                    <div>
+                        <div class="flex items-start justify-between gap-2 mb-1">
+                            <h2 class="text-sm font-bold text-[#fff2d7]">{{ coffee.name }}</h2>
+                            {% if coffee.is_hidden %}
+                                <span class="text-[9px] px-1.5 py-0.5 rounded bg-[#2e1e1e] border border-[#5a3a3a] text-[#e6b8b8]">
+                                    Hidden
+                                </span>
+                            {% endif %}
+                        </div>
+                        <p class="text-xs text-[#a09070] mb-3">
+                            {{ coffee.description }}
+                        </p>
+                    </div>
+                    <div class="pt-2 border-t border-[#2e2e2e] flex items-center justify-between">
+                        <span class="text-xs font-bold text-[#fff2d7]">${{ "%.2f"|format(coffee.price) }}</span>
+                        <button class="bg-[#fff2d7] text-[#141414] text-xs font-bold px-2.5 py-1 rounded hover:bg-[#e8dcc0] transition-colors">
+                            Order
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <script>
+            setTimeout(function() {
+                const flashContainer = document.getElementById('flash-container');
+                if (flashContainer) {
+                    flashContainer.style.opacity = '0';
+                    setTimeout(function() {
+                        flashContainer.remove();
+                    }, 500);
+            }}, 3000);
+        </script>
+
+    </div>
+</main>
+{% endblock %}
