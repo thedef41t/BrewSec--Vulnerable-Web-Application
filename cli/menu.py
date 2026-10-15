@@ -33,15 +33,9 @@ def header():
 def menu():
     print(
         f"""
-        {Colors.GREEN}[1]{Colors.RESET} SQLi {Colors.GRAY}(SQL Injection){Colors.RESET}                     {Colors.YELLOW}[! in development]{Colors.RESET}
-        {Colors.GREEN}[2]{Colors.RESET} XSS  {Colors.GRAY}(Cross-Site Scripting){Colors.RESET}              {Colors.YELLOW}[! in development]{Colors.RESET}
-        {Colors.GREEN}[3]{Colors.RESET} CSRF {Colors.GRAY}(Cross-Site Request Forgery){Colors.RESET}        {Colors.YELLOW}[! in development]{Colors.RESET}
-        {Colors.GREEN}[4]{Colors.RESET} SSRF {Colors.GRAY}(Server-Side Request Forgery){Colors.RESET}       {Colors.YELLOW}[! in development]{Colors.RESET}
-        {Colors.GREEN}[5]{Colors.RESET} IDOR {Colors.GRAY}(Insecure Direct Object Reference){Colors.RESET}  {Colors.YELLOW}[! in development]{Colors.RESET}
-        {Colors.GREEN}[6]{Colors.RESET} Authentication                           {Colors.YELLOW}[! in development]{Colors.RESET}
-        {Colors.GREEN}[7]{Colors.RESET} Race Condition                           {Colors.YELLOW}[! in development]{Colors.RESET}
-        {Colors.GREEN}[8]{Colors.RESET} Path Traversal                           {Colors.YELLOW}[! in development]{Colors.RESET}
-        
+        {Colors.GREEN}[1]{Colors.RESET} SQLi {Colors.GRAY}(SQL Injection){Colors.RESET}
+        {Colors.GREEN}[2]{Colors.RESET} Access Control Vulnerability
+ 
         {Colors.RED}[q]{Colors.RESET} Quit
         """
     )

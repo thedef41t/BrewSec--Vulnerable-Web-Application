@@ -1,8 +1,10 @@
 from cli.menu import clear_cli, header, menu, get_lab_choice, Colors
 from options.sql_injection import sql_injection
+from options.access_control import access_control
 
 LABS = {
     "1": sql_injection,
+    "2": access_control
 }
 
 def main():
