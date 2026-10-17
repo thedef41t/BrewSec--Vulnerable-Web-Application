@@ -12,11 +12,10 @@ def home():
         flash("Please log in first.", "error")
         return redirect(url_for('access_control.login'))
 
-    target_id = request.args.get('id', type=int)
-    
-    if target_id is None:
-        target_id = session.get('user_id')
+    if 'id' not in request.args:
+        return redirect(url_for('access_control.home', id=session.get('user_id')))
 
+    target_id = request.args.get('id', type=int)
     target_user = User.query.get(target_id)
 
     return render_template("content.html", target_user=target_user, target_id=target_id)
@@ -32,7 +31,6 @@ def login():
             session['user_id'] = user.id
             session['username'] = user.username
             session['email'] = user.email
-            session['role'] = user.role
             flash("Logged in successfully!", "success")
             return redirect(url_for('access_control.home'))
         else:

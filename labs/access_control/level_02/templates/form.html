@@ -14,32 +14,6 @@
             </p>
         </header>
 
-        <!-- Flashed messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div id="flash-messages" class="mb-6 space-y-2">
-                    {% for category, message in messages %}
-                        {% if category == 'success' %}
-                            <div class="text-xs px-4 py-3 rounded-md border
-                                bg-[#1e2a1e] border-[#3a5a3a] text-[#b8e0b8]">
-                                ✓ {{ message }}
-                            </div>
-                        {% elif category == 'error' or category == 'danger' %}
-                            <div class="text-xs px-4 py-3 rounded-md border
-                                bg-[#2a1e1e] border-[#5a3a3a] text-[#e0b8b8]">
-                                ✗ {{ message }}
-                            </div>
-                        {% else %}
-                            <div class="text-xs px-4 py-3 rounded-md border
-                                bg-[#1e1e1e] border-[#3a3a3a] text-[#fff2d7]">
-                                · {{ message }}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
-
         <!-- Login form -->
         <form method="post" action="{{ url_for('access_control.login') }}" class="mb-8 space-y-4">
             <div>
@@ -81,24 +55,7 @@
                 Log In
             </button>
         </form>
-
-        <!-- Session echo (dev/debug) -->
-        <p class="text-xs text-[#a09070] mb-4">
-            session: <span class="text-[#fff2d7]">{{ session.get('user_id') or '(anonymous)' }}</span>
-            · access: <span class="text-[#fff2d7]">level 01</span>
-        </p>
         
     </div>
 </main>
-
-<script>
-    setTimeout(() => {
-        const flashBox = document.getElementById('flash-messages');
-        if (flashBox) {
-            flashBox.style.opacity = '0';
-            setTimeout(() => flashBox.remove(), 500);
-        }
-    }, 3000);
-</script>
-
 {% endblock %}

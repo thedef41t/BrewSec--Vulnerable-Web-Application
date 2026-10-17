@@ -2,10 +2,14 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 from .database import db
 from sqlalchemy import text
 from .models import User
+from .session import SessionManager
 
 access_control_bp = Blueprint("access_control", __name__)
 
 @access_control_bp.route('/')
+def index():
+    return redirect(url_for('access_control.login'))
+
 @access_control_bp.route('/home')
 def home():
     if not session.get('user_id'):
@@ -29,10 +33,7 @@ def login():
 
         user = User.query.filter_by(username=username).first()
         if user and user.password == password:
-            session['user_id'] = user.id
-            session['username'] = user.username
-            session['email'] = user.email
-            session['role'] = user.role
+            SessionManager._create_session(user)
             flash("Logged in successfully!", "success")
             return redirect(url_for('access_control.home'))
         else:
@@ -41,8 +42,13 @@ def login():
 
     return render_template("form.html")
 
+@access_control_bp.route('/admin', methods=['GET', 'POST'])
+@SessionManager._admin_required
+def admin():
+    return render_template("admin.html")
+
 @access_control_bp.route('/logout')
 def logout():
-    session.clear()
+    SessionManager._clear_session()
     flash("You have been logged out.", "warning")
     return redirect(url_for('access_control.login'))

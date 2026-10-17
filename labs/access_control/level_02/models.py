@@ -39,3 +39,17 @@ class User(db.Model):
         default=lambda: datetime.now(timezone.utc),
         onupdate=lambda: datetime.now(timezone.utc),
     )
+
+class Session(db.Model):
+    __tablename__ = "sessions"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(nullable=False, index=True)
+    session_token: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
+    
+    created_at: Mapped[datetime] = mapped_column(
+        default=lambda: datetime.now(timezone.utc))
+    updated_at: Mapped[datetime] = mapped_column(
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc),
+    )

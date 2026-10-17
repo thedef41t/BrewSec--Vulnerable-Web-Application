@@ -5,8 +5,7 @@ def access_control():
     print(
         f"""
         {Colors.GREEN}[1]{Colors.RESET} Level 01 - Horizontal Privilege Escalation {Colors.GRAY}(Basic IDOR){Colors.RESET}
-        {Colors.GREEN}[2]{Colors.RESET} Level 02 - Vertical Privilege Escalation {Colors.GRAY}(Forced Browsing){Colors.RESET}
-        {Colors.GREEN}[3]{Colors.RESET} Level 03 - Mass Assignment {Colors.GRAY}(Role Tempering){Colors.RESET}
+        {Colors.GREEN}[2]{Colors.RESET} Level 02 - Vertical Privilege Escalation {Colors.GRAY}(Insecure Session Management){Colors.RESET}
         """
     )
     
@@ -17,9 +16,6 @@ def access_control():
         
     elif choice == "2":
         start_level_02()
-        
-    elif choice == "3":
-        start_level_03()
         
     elif choice == "q":
         return
