@@ -6,6 +6,7 @@ def access_control():
         f"""
         {Colors.GREEN}[1]{Colors.RESET} Level 01 - Horizontal Privilege Escalation {Colors.GRAY}(Basic IDOR){Colors.RESET}
         {Colors.GREEN}[2]{Colors.RESET} Level 02 - Vertical Privilege Escalation {Colors.GRAY}(Insecure Session Management){Colors.RESET}
+        {Colors.GREEN}[2]{Colors.RESET} Level 03 - Referer Based Access Control
         """
     )
     
@@ -16,6 +17,9 @@ def access_control():
         
     elif choice == "2":
         start_level_02()
+
+    elif choice == "3":
+        start_level_03()
         
     elif choice == "q":
         return
