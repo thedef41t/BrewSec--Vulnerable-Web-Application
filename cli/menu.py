@@ -33,9 +33,9 @@ def header():
 def menu():
     print(
         f"""
-        {Colors.GREEN}[1]{Colors.RESET} SQLi {Colors.GRAY}(SQL Injection){Colors.RESET}
+        {Colors.GREEN}[1]{Colors.RESET} SQL Injection {Colors.GRAY}(SQLi){Colors.RESET}
         {Colors.GREEN}[2]{Colors.RESET} Access Control Vulnerability
-        {Colors.GREEN}[3]{Colors.RESET} Race Condition
+        {Colors.GREEN}[3]{Colors.RESET} Cross-Site Scripting {Colors.GRAY}(XSS){Colors.RESET}
 
         {Colors.RED}[q]{Colors.RESET} Quit
         """

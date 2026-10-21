@@ -18,16 +18,16 @@ def create_app():
     app.config.from_object(Config)
     
     database_path = instance_dir / "app.db"
-
+    
     app.config["SQLALCHEMY_DATABASE_URI"] = (
         f"sqlite:///{database_path}"
     )
     
     db.init_app(app)
     
-    from .routes import race_condition_bp
-    app.register_blueprint(race_condition_bp)
-
+    from .routes import xss_bp
+    app.register_blueprint(xss_bp)
+    
     with app.app_context():
         db.create_all()
         seed_db()

@@ -15,8 +15,8 @@ LAB_PORTS = {
     ("access_control", "level_02"): 4002,
     ("access_control", "level_03"): 4003,
 
-    # Race Condition
-    ("race_condition", "level_01"): 5001
+    # Cross-Site Scripting
+    ("cross_site_scripting", "level_01"): 5001
 }
 
 
