@@ -1,10 +1,12 @@
 from cli.menu import clear_cli, header, menu, get_lab_choice, Colors
 from options.sql_injection import sql_injection
 from options.access_control import access_control
+from options.race_condition import race_condition
 
 LABS = {
     "1": sql_injection,
-    "2": access_control
+    "2": access_control,
+    "3": race_condition,
 }
 
 def main():

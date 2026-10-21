@@ -35,6 +35,7 @@ def menu():
         f"""
         {Colors.GREEN}[1]{Colors.RESET} SQLi {Colors.GRAY}(SQL Injection){Colors.RESET}
         {Colors.GREEN}[2]{Colors.RESET} Access Control Vulnerability
+        {Colors.GREEN}[3]{Colors.RESET} Race Condition
 
         {Colors.RED}[q]{Colors.RESET} Quit
         """

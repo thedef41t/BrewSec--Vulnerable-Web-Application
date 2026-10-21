@@ -14,7 +14,11 @@ LAB_PORTS = {
     ("access_control", "level_01"): 4001,
     ("access_control", "level_02"): 4002,
     ("access_control", "level_03"): 4003,
+
+    # Race Condition
+    ("race_condition", "level_01"): 5001
 }
+
 
 
 def launch_lab(category, level):
