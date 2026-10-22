@@ -7,8 +7,6 @@ LAB_PORTS = {
     ("sql_injection", "level_01"): 3001,
     ("sql_injection", "level_02"): 3002,
     ("sql_injection", "level_03"): 3003,
-    ("sql_injection", "level_04"): 3004,
-    ("sql_injection", "level_05"): 3005,
 
     # Access Control Ports
     ("access_control", "level_01"): 4001,
@@ -16,7 +14,8 @@ LAB_PORTS = {
     ("access_control", "level_03"): 4003,
 
     # Cross-Site Scripting
-    ("cross_site_scripting", "level_01"): 5001
+    ("cross_site_scripting", "level_01"): 5001,
+    ("cross_site_scripting", "level_02"): 5002
 }
 
 
