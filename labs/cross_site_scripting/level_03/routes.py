@@ -4,6 +4,7 @@ from .models import Feedback
 
 xss_bp = Blueprint("xss", __name__)
 
+# ---------------------------------------------------------------------
 @xss_bp.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
@@ -26,8 +27,11 @@ def home():
         
     feedback = Feedback.query.order_by(Feedback.id.desc()).all()
     return render_template('content.html', feedback=feedback)
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @xss_bp.route('/feedback')
 def feedback():
     feedback = Feedback.query.all()
     return render_template('feedback.html', feedback=feedback)
+# ---------------------------------------------------------------------

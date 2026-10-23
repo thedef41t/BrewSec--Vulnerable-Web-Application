@@ -4,6 +4,7 @@ from .models import Review
 
 xss_bp = Blueprint("xss", __name__)
 
+# ---------------------------------------------------------------------
 @xss_bp.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
@@ -18,3 +19,4 @@ def home():
         
     reviews = Review.query.order_by(Review.id.desc()).all()
     return render_template('content.html', reviews=reviews)
+# ---------------------------------------------------------------------

@@ -4,6 +4,7 @@ from sqlalchemy import text
 
 sqli_bp = Blueprint("sqli", __name__)
 
+# ---------------------------------------------------------------------
 @sqli_bp.route('/')
 def home():
     q = request.args.get("q", "")
@@ -19,3 +20,4 @@ def home():
     rows = [dict(row) for row in result.mappings().all()]
     
     return render_template("content.html", rows=rows, q=q)
+# ---------------------------------------------------------------------

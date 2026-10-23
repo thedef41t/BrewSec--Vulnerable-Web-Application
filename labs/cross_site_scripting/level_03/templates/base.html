@@ -7,7 +7,35 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-[#141414] text-[#fff2d7] font-mono">
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mb-6 space-y-2">
+                {% for category, msg in messages %}
+                    <div class="rounded-md px-4 py-2 text-sm border
+                        {% if category == 'success' %}
+                            bg-[#1e2a1e] border-[#2e4a2e] text-[#b8e0b8]
+                        {% else %}
+                            bg-[#2a1e1e] border-[#4a2e2e] text-[#e0b8b8]
+                        {% endif %}">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
     {% block content %}
     {% endblock %}
+
+    <script>
+        setTimeout(() => {
+            const flashBox = document.getElementById('flash-messages');
+            if (flashBox) {
+                flashBox.style.opacity = '0';
+                setTimeout(() => flashBox.remove(), 500);
+            }
+        }, 3000);
+    </script>
 </body>
 </html>

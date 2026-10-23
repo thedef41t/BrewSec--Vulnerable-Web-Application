@@ -6,10 +6,13 @@ from .session import SessionManager
 
 access_control_bp = Blueprint("access_control", __name__)
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/')
 def index():
     return redirect(url_for('access_control.login'))
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/home')
 def home():
     user_id = session.get('user_id')
@@ -25,7 +28,9 @@ def home():
     target_user = db.session.get(User, target_id)
 
     return render_template("content.html", target_user=target_user)
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -42,14 +47,19 @@ def login():
             return redirect(url_for('access_control.login'))
 
     return render_template("form.html")
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/admin', methods=['GET', 'POST'])
 @SessionManager._admin_required
 def admin():
     return render_template("admin.html")
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/logout')
 def logout():
     SessionManager._clear_session()
     flash("You have been logged out.", "warning")
     return redirect(url_for('access_control.login'))
+# ---------------------------------------------------------------------

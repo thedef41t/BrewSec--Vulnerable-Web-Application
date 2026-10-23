@@ -5,10 +5,13 @@ from .models import User
 
 csrf_bp = Blueprint("csrf", __name__)
 
+# ---------------------------------------------------------------------
 @csrf_bp.route('/')
 def index():
     return redirect(url_for('csrf.login'))
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @csrf_bp.route('/')
 @csrf_bp.route('/home')
 def home():
@@ -25,7 +28,9 @@ def home():
     target_user = db.session.get(User, target_id)
 
     return render_template("content.html", target_user=target_user)
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @csrf_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -44,13 +49,17 @@ def login():
             return redirect(url_for('csrf.login'))
 
     return render_template("form.html")
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @csrf_bp.route('/logout')
 def logout():
     session.clear()
     flash("You have been logged out.", "warning")
     return redirect(url_for('csrf.login'))
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @csrf_bp.route('/update_password', methods=['GET', 'POST'])
 def update_password():
     username = session.get('username')
@@ -80,3 +89,4 @@ def update_password():
         return redirect(url_for('csrf.home'))
     
     return render_template('update_password.html')
+# ---------------------------------------------------------------------

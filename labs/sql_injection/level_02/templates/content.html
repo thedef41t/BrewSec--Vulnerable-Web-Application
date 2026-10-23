@@ -6,29 +6,8 @@
 
         <!-- Header -->
         <header class="mb-5">
-            <h1 class="text-xl font-bold text-[#fff2d7]">☕ BrewSec · Login</h1>
-            <p class="text-xs text-[#a09070] mt-0.5">
-                Sign in. No password reset, no registration.
-            </p>
+            <h1 class="text-xl font-bold text-[#fff2d7]">☕ BrewSec · SQL Injection (Login Bypass) · Level 02</h1>
         </header>
-
-        <!-- Flash messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div id="flash-container" class="mb-3 space-y-1.5">
-                    {% for category, message in messages %}
-                        <div class="text-xs px-3 py-2 rounded-md border
-                            {% if category == 'success' %}
-                                bg-[#1e2e1e] border-[#3a5a3a] text-[#b8e6b8]
-                            {% else %}
-                                bg-[#2e1e1e] border-[#5a3a3a] text-[#e6b8b8]
-                            {% endif %}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
 
         <!-- Login form -->
         <form method="post" action=""

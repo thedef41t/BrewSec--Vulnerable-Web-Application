@@ -4,6 +4,7 @@ from sqlalchemy import text
 
 sqli_bp = Blueprint("sqli", __name__)
 
+# ---------------------------------------------------------------------
 @sqli_bp.route('/', methods=["GET", "POST"])
 def home():
     category = request.args.get("category", "all")
@@ -18,3 +19,4 @@ def home():
     except Exception as error:
         print(f"Server error: {error}")
     return render_template("content.html", coffees=coffees, selected_category=category)
+# ---------------------------------------------------------------------

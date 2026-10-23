@@ -4,6 +4,7 @@ from sqlalchemy import text
 
 sqli_bp = Blueprint("sqli", __name__)
 
+# ---------------------------------------------------------------------
 @sqli_bp.route('/', methods=["GET", "POST"])
 def home():
     username = request.form.get("username")
@@ -21,9 +22,12 @@ def home():
         except Exception as error:
             print(f"Server error: {error}")
     return render_template("content.html")
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @sqli_bp.route('/logout')
 def logout():
     session.clear()
     flash("You have been logged out.", "success")
     return render_template("content.html")
+# ---------------------------------------------------------------------

@@ -1,14 +1,15 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from .database import db
-from sqlalchemy import text
 from .models import User
 
 access_control_bp = Blueprint("access_control", __name__)
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/')
 def index():
     return redirect(url_for('access_control.login'))
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/')
 @access_control_bp.route('/home')
 def home():
@@ -23,7 +24,9 @@ def home():
     target_user = User.query.get(target_id)
 
     return render_template("content.html", target_user=target_user, target_id=target_id)
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -42,9 +45,12 @@ def login():
             return redirect(url_for('access_control.login'))
 
     return render_template("form.html")
+# ---------------------------------------------------------------------
 
+# ---------------------------------------------------------------------
 @access_control_bp.route('/logout')
 def logout():
     session.clear()
     flash("You have been logged out.", "warning")
     return redirect(url_for('access_control.login'))
+# ---------------------------------------------------------------------

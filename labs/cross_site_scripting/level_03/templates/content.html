@@ -9,28 +9,7 @@
             <h1 class="text-2xl font-bold text-[#fff2d7]">
                 ☕ BrewSec · XSS (Blind XSS) · Level 03
             </h1>
-            <p class="text-sm text-[#a09070] mt-1">
-                Leave feedback about our newest coffee roast
-            </p>
         </header>
-
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="mb-6 space-y-2">
-                    {% for category, msg in messages %}
-                        <div class="rounded-md px-4 py-2 text-sm border
-                            {% if category == 'success' %}
-                                bg-[#1e2a1e] border-[#2e4a2e] text-[#b8e0b8]
-                            {% else %}
-                                bg-[#2a1e1e] border-[#4a2e2e] text-[#e0b8b8]
-                            {% endif %}">
-                            {{ msg }}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
 
         <!-- Feedback Submission Form -->
         <form method="POST" action="{{ url_for('xss.home') }}" class="mb-10 bg-[#1e1e1e] border border-[#2e2e2e] rounded-lg p-6 space-y-4">
