@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="max-w-4xl mx-auto mt-12 p-6 bg-[#181818] border border-[#333] rounded-lg text-[#ddd]">
+    <h1 class="text-2xl font-bold text-[#b8e0b8] mb-4">👑 Admin Control Panel</h1>
+
+    <!-- Feedback Inbox -->
+    <div class="flex items-baseline justify-between mb-3">
+        <h2 class="text-xs uppercase tracking-wider text-[#b8e0b8] font-semibold">Feedback Inbox</h2>
+        <span class="text-xs text-[#888] font-mono">{{ feedback|length }} total</span>
+    </div>
+
+    {% if feedback %}
+        <div class="space-y-3">
+            {% for fb in feedback %}
+                <article class="bg-[#111] border border-[#333] rounded-md p-4">
+                    <!-- Meta row -->
+                    <div class="flex items-baseline justify-between mb-2 pb-2 border-b border-[#2a2a2a]">
+                        <div class="flex items-baseline gap-3 flex-wrap">
+                            <span class="font-semibold text-[#ddd] text-sm">
+                                {{ fb.name | safe }}
+                            </span>
+                            {% if fb.email %}
+                                <span class="text-xs text-[#888]">{{ fb.email | safe }}</span>
+                            {% endif %}
+                            {% if fb.coffee_id %}
+                                <span class="text-xs text-[#888] font-mono">coffee #{{ fb.coffee_id }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="flex items-baseline gap-3">
+                            {% if fb.is_archived %}
+                                <span class="text-xs px-2 py-0.5 rounded bg-[#2a2a2a] text-[#888]">archived</span>
+                            {% elif fb.is_read %}
+                                <span class="text-xs px-2 py-0.5 rounded bg-[#1e2a1e] text-[#b8e0b8]">read</span>
+                            {% else %}
+                                <span class="text-xs px-2 py-0.5 rounded bg-[#2e1e1e] text-[#e0b8b8]">unread</span>
+                            {% endif %}
+                            <span class="text-xs text-[#888] font-mono">#{{ fb.id }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject -->
+                    {% if fb.subject %}
+                        <h3 class="text-sm font-semibold text-[#ddd] mb-1">
+                            {{ fb.subject | safe }}
+                        </h3>
+                    {% endif %}
+
+                    <!-- Message -->
+                    <div class="text-sm text-[#aaa] whitespace-pre-wrap font-mono">
+                        {{ fb.message | safe }}
+                    </div>
+
+                    <!-- Footer -->
+                    {% if fb.created_at %}
+                        <div class="mt-3 pt-2 border-t border-[#2a2a2a] text-xs text-[#666] font-mono">
+                            {{ fb.created_at.strftime('%Y-%m-%d %H:%M UTC') }}
+                        </div>
+                    {% endif %}
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-8 border border-dashed border-[#333] rounded-md bg-[#111]">
+            <p class="text-[#888] text-sm">No feedback in the inbox yet.</p>
+        </div>
+    {% endif %}
+</main>
+{% endblock %}

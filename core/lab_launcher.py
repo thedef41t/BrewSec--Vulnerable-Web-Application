@@ -15,7 +15,8 @@ LAB_PORTS = {
 
     # Cross-Site Scripting
     ("cross_site_scripting", "level_01"): 5001,
-    ("cross_site_scripting", "level_02"): 5002
+    ("cross_site_scripting", "level_02"): 5002,
+    ("cross_site_scripting", "level_03"): 5003,
 }
 
 

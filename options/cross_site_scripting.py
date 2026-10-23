@@ -6,6 +6,7 @@ def cross_site_scripting():
         f"""
         {Colors.GREEN}[1]{Colors.RESET} Level 01 - Cross Site Scripting {Colors.GRAY}(Basic Reflected XSS){Colors.RESET}
         {Colors.GREEN}[2]{Colors.RESET} Level 02 - Cross Site Scripting {Colors.GRAY}(Incomplete Tag Blocklist){Colors.RESET}
+        {Colors.GREEN}[3]{Colors.RESET} Level 03 - Cross Site Scripting {Colors.GRAY}(Blind XSS){Colors.RESET}
         """
     )
     
@@ -16,6 +17,9 @@ def cross_site_scripting():
 
     if choice == "2":
         start_level_02()
+
+    if choice == "3":
+        start_level_03()
         
     elif choice == "q":
         return
@@ -31,3 +35,7 @@ def start_level_01():
 def start_level_02():
     print(f"{Colors.CYAN}[+]{Colors.RESET} Starting Cross-Site Scripting Level 02...")
     launch_lab("cross_site_scripting", "level_02")
+
+def start_level_03():
+    print(f"{Colors.CYAN}[+]{Colors.RESET} Starting Cross-Site Scripting Level 03...")
+    launch_lab("cross_site_scripting", "level_03")
