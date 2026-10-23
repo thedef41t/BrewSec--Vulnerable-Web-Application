@@ -2,11 +2,13 @@ from cli.menu import clear_cli, header, menu, get_lab_choice, Colors
 from options.sql_injection import sql_injection
 from options.access_control import access_control
 from options.cross_site_scripting import cross_site_scripting
+from options.cross_site_request_forgery import cross_site_request_forgery
 
 LABS = {
     "1": sql_injection,
     "2": access_control,
     "3": cross_site_scripting,
+    "4": cross_site_request_forgery
 }
 
 def main():

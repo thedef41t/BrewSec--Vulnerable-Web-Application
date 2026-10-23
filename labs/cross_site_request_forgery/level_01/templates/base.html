@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection (LEVEL 01)</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-[#141414] text-[#fff2d7] font-mono">
+    <!-- Flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-messages" class="absolute top-4 left-1/2 -translate-x-1/2 z-50 space-y-2">
+                {% for category, message in messages %}
+                    {% if category == 'success' %}
+                        <div class="text-xs px-4 py-3 rounded-md border
+                            bg-[#1e2a1e] border-[#3a5a3a] text-[#b8e0b8]">
+                            ✓ {{ message }}
+                        </div>
+                    {% elif category == 'error' or category == 'danger' %}
+                        <div class="text-xs px-4 py-3 rounded-md border
+                            bg-[#2a1e1e] border-[#5a3a3a] text-[#e0b8b8]">
+                            ✗ {{ message }}
+                        </div>
+                    {% else %}
+                        <div class="text-xs px-4 py-3 rounded-md border
+                            bg-[#1e1e1e] border-[#3a3a3a] text-[#fff2d7]">
+                            · {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    {% block content %}
+    {% endblock %}
+
+    <script>
+        setTimeout(() => {
+            const flashBox = document.getElementById('flash-messages');
+            if (flashBox) {
+                flashBox.style.opacity = '0';
+                setTimeout(() => flashBox.remove(), 500);
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

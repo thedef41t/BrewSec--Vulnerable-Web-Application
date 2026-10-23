@@ -6,6 +6,10 @@ from .models import User
 access_control_bp = Blueprint("access_control", __name__)
 
 @access_control_bp.route('/')
+def index():
+    return redirect(url_for('access_control.login'))
+
+@access_control_bp.route('/')
 @access_control_bp.route('/home')
 def home():
     if not session.get('user_id'):
