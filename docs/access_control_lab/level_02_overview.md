@@ -1,0 +1,23 @@
+## Access Control Vulnerability ( Vertical Privilege Escalation ) - Level_02
+
+❗️**Note**: The application contains additional security issues (e.g., plaintext password storage, a weak `secret_key`, missing security headers). However, this assessment focuses exclusively on the vulnerabilities explicitly defined in scope; other findings are out of scope and not evaluated here.
+
+### **Overview**
+
+...
+
+### **Vulnerable code**
+
+...
+
+### Impact
+
+...
+
+### Remedation
+
+...
+
+### Secure code:
+
+...
