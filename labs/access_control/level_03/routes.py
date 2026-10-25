@@ -66,12 +66,20 @@ def update_role(user_id):
     if referer.startswith(request.host_url + "admin"):
         new_role = request.form.get("new_role")
         user = db.session.get(User, user_id)
-        if user:
-            user.role = new_role
-            db.session.commit()
-            flash(f"Updated role for {user.username} to {new_role}.", "success")
-        else:
-            flash("User not found.", "error")
+        admin_user = 1
+
+        if user is None:
+            flash("User not found", "error")
+            return redirect(url_for("access_control.admin"))
+
+        if user.id == admin_user:
+            flash("Admin user's role cannot be changed!", "error")
+            return redirect(url_for("access_control.admin"))
+        
+        user.role = new_role
+        db.session.commit()
+        flash(f"Updated role for {user.username} to {new_role}.", "success")
+
     else:
         flash(f"Invalid request source.", "error")
 

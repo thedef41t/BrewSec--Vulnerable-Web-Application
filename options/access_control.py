@@ -5,7 +5,7 @@ def access_control():
     print(
         f"""
         {Colors.GREEN}[1]{Colors.RESET} Level 01 - Horizontal Privilege Escalation {Colors.GRAY}(Basic IDOR){Colors.RESET}
-        {Colors.GREEN}[2]{Colors.RESET} Level 02 - Vertical Privilege Escalation {Colors.GRAY}(Insecure Session Management){Colors.RESET}
+        {Colors.GREEN}[2]{Colors.RESET} Level 02 - Broken Session Authorization
         {Colors.GREEN}[2]{Colors.RESET} Level 03 - Referer Based Access Control
         """
     )
