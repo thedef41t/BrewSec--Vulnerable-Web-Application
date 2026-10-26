@@ -62,13 +62,11 @@
                     <li class="bg-[#1e1e1e] border border-[#2e2e2e] rounded-lg p-5">
                         <div class="flex items-baseline justify-between mb-2">
                             <span class="font-semibold text-[#fff2d7] text-sm">
-                                <!-- VULNERABLE: Using |safe renders raw HTML/JS instead of escaping it -->
                                 {{ rev.author | safe }}
                             </span>
                             <span class="text-xs text-[#a09070]">Just now</span>
                         </div>
                         <div class="text-sm text-[#c0b090]">
-                            <!-- VULNERABLE: Intentionally unescaped output -->
                             {{ rev.comment | safe }}
                         </div>
                     </li>

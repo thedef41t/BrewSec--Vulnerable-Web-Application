@@ -1,7 +1,5 @@
 ## Access Control Vulnerability ( Broken Session Authorization ) - Level_02
 
-❗️**Note**: The application contains additional security issues (e.g., plaintext password storage, a weak `secret_key`, missing security headers). However, this assessment focuses exclusively on the vulnerabilities explicitly defined in scope; other findings are out of scope and not evaluated here.
-
 ### **Overview**
 
 The application stores the authenticated user identity (`user_id`, `username`, `role`, `email`, `session_token`) inside a Flask Session, and `/home` route authorizes request solely reading `session['user_id']` from that cookie, and the `session_token`  embedded in it is a plain `ase64url(json.dumps(payload))`  with no signature. Attacker can sign an arbitrary session payload and impersonate any user including admin by changing just `user_id`.
@@ -103,7 +101,7 @@ flask-unsign --sign --cookie "{'user_id': 1}" --secret 'JY7d4ZQ5p4aQ5LotwJVRorBD
 3. **No authentication required beyond a self-registered account** (or a captured cookie).
 4. **Root cause is systemic:** identity is client-controlled, the token is unsigned, and the `SECRET_KEY` is weak — three independent failures that each alone would be sufficient.
 
-### **Remedation**
+### **Remediation**
 
 1. **Never trust client-supplied identity for authorization.** The cookie must carry only an **opaque, random session identifier**; the identity (`user_id`, `role`, `is_active`) must be resolved **server-side from the database on every request**.
 2. **Sign any token that must be stateless** — use `itsdangerous.URLSafeTimedSerializer` (or a real JWT with `HS256`/`RS256`) and **enforce `max_age`**. Remove the `base64url(json)` token entirely; it provides no integrity.

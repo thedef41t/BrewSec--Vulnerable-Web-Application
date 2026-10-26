@@ -1,7 +1,5 @@
 ## Access Control Vulnerability ( Referer Based Access Control ) - Level_03
 
-❗️**Note**: The application contains additional security issues (e.g., plaintext password storage, a weak `secret_key`, missing security headers). However, this assessment focuses exclusively on the vulnerabilities explicitly defined in scope; other findings are out of scope and not evaluated here.
-
 ### **Overview**
 
 The `update_role` endpoint enforces its security check **solely by inspecting the `Referer` HTTP header**. Because the `Referer` header is fully attacker-controlled, this check can be trivially bypassed, allowing an attacker to change any user's role — including promoting themselves to admin.
@@ -40,7 +38,7 @@ def update_role(user_id):
 
 - change a user role and using Burp Repeater, change the `user_id` in HTTP request and `new_role` to `admin` in request body.
 
-### Impact
+### **Impact**
 
 1. **Takeover of other accounts' authority**: grant admin to attacker-controlled sleeper accounts, or to colluding accounts.
 2. **Targeted sabotage**: strip roles from specific users (e.g., the security team, finance approvers) to block their work or force them into a weaker state.

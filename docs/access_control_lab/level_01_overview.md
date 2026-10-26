@@ -1,7 +1,5 @@
 ## Access Control Vulnerability ( Basic IDOR ) - Level_01
 
-❗️**Note**: The application contains additional security issues (e.g., plaintext password storage, a weak `secret_key`, missing security headers). However, this assessment focuses exclusively on the vulnerabilities explicitly defined in scope; other findings are out of scope and not evaluated here.
-
 ### **Overview**
 
 The application allows an authonticareted user to view other users data manipulating `id` parameter in URL. Attacker can change `&id=3` to `&id=1`, because the code fails to verify wether the logged in user matches or has permission to view the requested `target_id`
@@ -28,14 +26,14 @@ def home():
 
 - the vulnerability relies on the fact that the application accepts an `id` parameter from the URL (`request.args.get('id')`) and queries the database directly without validating if the currently logged-in user (`session.get('user_id')`) has permission to view that record.
 
-### Impact
+### **Impact**
 
 Attacker can:
 
 - **Privilege Escalation**: attacker's can directly target `id=1` to gain admin privilege. (In many applications, `id=1` is automatically assigned to the very first user created during setup—which is almost always the **administrator account**.)
 - **Privacy Violations**: Depending on what `content.html` displays, private information like email addresses, account details, purchase histories, or private messages could be leaked to unauthorized parties.
 
-### Remedation
+### **Remediation**
 
 1. **Enforce Authentication Checks First**: Always verify that a user has an active, valid session before allowing them to access any protected route or resource. If no session exists, redirect them to login immediately.
 
@@ -47,7 +45,7 @@ Attacker can:
    ```
 2. **Implement Server-Side Authorization (Never Trust Client Input)**: Do not rely on the `id` parameter provided by the user in the URL (`request.args`) to determine whose data to fetch. Instead, compare the requested ID against the authenticated session data, or explicitly verify if the current user has administrative permissions to view other accounts.
 
-### Secure code:
+### **Secure code**:
 
 ```python
 @access_control_bp.route('/home')
