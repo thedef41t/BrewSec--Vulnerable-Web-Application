@@ -27,6 +27,11 @@ def header():
                 {Colors.BOLD}{Colors.WHITE}Vulnerable Web Application{Colors.RESET}
                                     {Colors.BOLD}{Colors.WHITE}by: def41t{Colors.RESET}
         {Colors.CYAN}================================================={Colors.RESET}
+        
+        ❗️Note: The application contains additional security issues
+        (e.g., plaintext password storage, a weak `secret_key`, missing security headers).
+        However, this assessment focuses exclusively on the vulnerabilities explicitly defined
+        in scope; other findings are out of scope and not evaluated here.
         """
     )
 
