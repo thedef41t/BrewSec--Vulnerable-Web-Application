@@ -3,12 +3,15 @@ from options.sql_injection import sql_injection
 from options.access_control import access_control
 from options.cross_site_scripting import cross_site_scripting
 from options.cross_site_request_forgery import cross_site_request_forgery
+from options.cache_poisoning import cache_poisoning
+from core.lab_launcher import start_secure_application
 
 LABS = {
     "1": sql_injection,
     "2": access_control,
     "3": cross_site_scripting,
-    "4": cross_site_request_forgery
+    "4": cross_site_request_forgery,
+    "5": cache_poisoning
 }
 
 def main():
@@ -19,6 +22,14 @@ def main():
         menu()
         
         choice = get_lab_choice()
+
+        if choice == "0":
+            clear_cli()
+            print(
+                f"\n{Colors.CYAN}[+]{Colors.RESET} Running Secure Application...\n"
+            )
+            start_secure_application("secure")
+
         
         if choice == "q":
             clear_cli()

@@ -3,6 +3,9 @@ import traceback
 from cli.menu import Colors
 
 LAB_PORTS = {
+    # Secure
+    ("secure"): 5533,
+
     # SQL Injection Ports
     ("sql_injection", "level_01"): 3001,
     ("sql_injection", "level_02"): 3002,
@@ -20,9 +23,44 @@ LAB_PORTS = {
 
     # Cross-Site Request Forgery
     ("cross_site_request_forgery", "level_01"): 6001,
+
+    # Cache Poisoning
+    ("cache_poisoning", "level_01"): 7001,
 }
 
+def start_secure_application(category):
+    try:
+        module_name = f"labs.{category}.app"
+        
+        print(f"{Colors.CYAN}[+]{Colors.RESET} Importing: {module_name}", flush=True)
+        module = importlib.import_module(module_name)
 
+        print(f"{Colors.CYAN}[+]{Colors.RESET} Creating Flask app...", flush=True)
+        app = module.create_app()
+
+        port = LAB_PORTS.get(category)
+
+        if port is None:
+            print(f"{Colors.RED}[!]{Colors.RESET} No port configured for {category}")
+            return
+
+        print(
+            f"{Colors.CYAN}[+]{Colors.RESET} Starting server at http://127.0.0.1:{port}",
+            flush=True,
+        )
+
+        app.run(
+            host="127.0.0.1",
+            port=port,
+            debug=False,
+            use_reloader=False,
+        )
+
+        print(f"{Colors.YELLOW}[!]{Colors.CYAN} Flask server stopped.", flush=True)
+        
+    except Exception:
+            traceback.print_exc()
+            input("Press Enter to continue...")
 
 def launch_lab(category, level):
     try:

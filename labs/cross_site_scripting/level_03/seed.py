@@ -39,4 +39,4 @@ def seed_db():
     
     db.session.commit()
     
-    print(f"{Colors.CYAN}[+]{Colors.RESET} Level 01 database seeded.")
+    print(f"{Colors.CYAN}[+]{Colors.RESET} Level 03 database seeded.")

@@ -42,6 +42,9 @@ def menu():
         {Colors.GREEN}[2]{Colors.RESET} Access Control Vulnerability
         {Colors.GREEN}[3]{Colors.RESET} Cross-Site Scripting {Colors.GRAY}(XSS){Colors.RESET}
         {Colors.GREEN}[4]{Colors.RESET} Cross-Site Request Forgery {Colors.GRAY}(CSRF){Colors.RESET}
+        {Colors.GREEN}[5]{Colors.RESET} Cache Poisoning
+
+        {Colors.GREEN}[0]{Colors.RESET} Secure
 
         {Colors.RED}[q]{Colors.RESET} Quit
         """

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block nav%}
+{% endblock %}
+
+{% block content %}
+<main class="font-mono min-h-screen px-6 py-10 bg-[#141414] text-[#fff2d7] flex items-center justify-center">
+    <div class="max-w-3xl mx-auto w-full">
+
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-2xl font-bold text-[#fff2d7]">
+                🔐 BrewSec · Secure Application
+            </h1>
+        </header>
+
+        <!-- Login form -->
+        <form method="post" action="{{ url_for('secure.login') }}" class="mb-8 space-y-4">
+            <div>
+                <label for="username" class="block text-xs text-[#a09070] mb-1">username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value=""
+                    placeholder="e.g. admin"
+                    autocomplete="off"
+                    class="w-full bg-[#1e1e1e] border border-[#3a3a3a] rounded-md
+                        px-4 py-2 text-sm text-[#fff2d7] placeholder-[#a09070]
+                        focus:outline-none focus:border-[#fff2d7] focus:ring-1 focus:ring-[#fff2d7]/30
+                        transition-colors"
+                >
+            </div>
+            <div>
+                <label for="password" class="block text-xs text-[#a09070] mb-1">password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value=""
+                    placeholder="••••••••"
+                    autocomplete="off"
+                    class="w-full bg-[#1e1e1e] border border-[#3a3a3a] rounded-md
+                        px-4 py-2 text-sm text-[#fff2d7] placeholder-[#a09070]
+                        focus:outline-none focus:border-[#fff2d7] focus:ring-1 focus:ring-[#fff2d7]/30
+                        transition-colors"
+                >
+            </div>
+            <button
+                type="submit"
+                class="w-full bg-[#fff2d7] text-[#141414] font-bold rounded-md
+                    px-5 py-2 text-sm hover:bg-[#e8dcc0] transition-colors
+                    shadow-lg shadow-[#fff2d7]/10"
+            >
+                Log In
+            </button>
+        </form>
+        
+    </div>
+</main>
+{% endblock %}
